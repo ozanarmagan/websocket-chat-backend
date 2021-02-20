@@ -1,1 +1,4 @@
 venv
+chatbackend/chatbackend/__pycache__
+chatbackend/chatwebsocket/__pycache__
+chatbackend/chatwebsocket/migrations
