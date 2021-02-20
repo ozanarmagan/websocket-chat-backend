@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'channels',
     'chatwebsocket',
-    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -61,13 +60,6 @@ CHANNEL_LAYERS = {
             "hosts": [("127.0.0.1", 6379)],
         },
     },
-}
-
-REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-    ]
 }
 
 ROOT_URLCONF = 'chatbackend.urls'
