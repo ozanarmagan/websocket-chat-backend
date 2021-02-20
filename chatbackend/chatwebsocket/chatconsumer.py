@@ -3,6 +3,7 @@ import json
 from channels.consumer import AsyncConsumer
 from .models import *
 from asgiref.sync import sync_to_async
+from datetime import datetime
 
 @sync_to_async
 def get_users():
@@ -38,6 +39,7 @@ class ChatConsumer(AsyncConsumer):
         })
     
     async def websocket_receive(self,event):
+        print(event["text"])
         message = json.loads(event.get('text',None))
         if message["type"] == "get_users":
             users=[]
@@ -84,7 +86,8 @@ class ChatConsumer(AsyncConsumer):
             "text": str(text)
         })
     async def new_message(self,event):
-        text = {"message_type":"new_message","message":event["text"],"user":event["user"]}
+        now = datetime.now()
+        text = {"message_type":"new_message","message":event["text"],"user":event["user"],"time": now.strftime("%d/%m %H:%M:%S")}
         await self.send({
             "type":"websocket.send",
             "text": str(text)
